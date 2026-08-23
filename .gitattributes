@@ -3,3 +3,12 @@
 /pnpm-lock.yaml export-ignore
 /pnpm-workspace.yaml export-ignore
 /.gitattributes export-ignore
+
+# BWF fork additions. The release zip is built with `git archive`, which honors
+# these. Everything below is repo-level and must never reach a Ghost install.
+/.claude/ export-ignore
+/ghost-admin/ export-ignore
+/.github/ export-ignore
+/.gitignore export-ignore
+/renovate.json export-ignore
+/gulpfile.js export-ignore

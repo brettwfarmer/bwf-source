@@ -2,7 +2,7 @@
     "name": "bwf-source",
     "description": "Brett W. Farmer publication theme. Light fork of Ghost Source v1.7.0 with a server-rendered series-nav row. Brand tokens and fonts are set via Code Injection.",
     "demo": "https://source.ghost.io",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "engines": {
         "ghost": ">=5.0.0",
         "node": ">=22.12.0"
