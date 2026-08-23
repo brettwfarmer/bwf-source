@@ -1,0 +1,46 @@
+# BWF routes.yaml - reference copy (applied in Ghost Admin > Settings > Labs > Routes)
+#
+# DESIGN CONSTRAINT (locked): series pages are CHANNEL routes, never collections.
+# Channels are additive views; they do not re-home posts, so every existing flat
+# permalink (brettwfarmer.com/{slug}/) keeps working. Converting any of these to a
+# collection is a breaking change and is prohibited.
+#
+# VERIFY BEFORE APPLYING: every tag slug below must be confirmed against the live
+# site's actual tag slugs (Ghost Admin > Tags, or /ghost/api/content). Slugs here
+# are carried from the working record and are UNVERIFIED. Fix any mismatch here
+# first, then apply.
+
+routes:
+  /operational-learning/:                 # VERIFY slug
+    controller: channel
+    filter: tag:operational-learning
+    template: index
+  /data-done-right/:                      # VERIFY slug
+    controller: channel
+    filter: tag:data-done-right
+    template: index
+  /across-the-divide/:                    # VERIFY slug
+    controller: channel
+    filter: tag:across-the-divide
+    template: index
+  /real-talk-to-real-results/:            # VERIFY slug (series name: Real Talk to Real Results)
+    controller: channel
+    filter: tag:real-talk-to-real-results
+    template: index
+  /architecture-that-persuades/:          # VERIFY slug (Arc 1)
+    controller: channel
+    filter: tag:architecture-that-persuades
+    template: index
+  /who-pays-for-clarity/:                 # VERIFY slug (Arc 2)
+    controller: channel
+    filter: tag:who-pays-for-clarity
+    template: index
+
+collections:
+  /:
+    permalink: /{slug}/
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

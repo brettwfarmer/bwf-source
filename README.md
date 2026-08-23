@@ -1,68 +1,40 @@
-# Source
+# bwf-source
 
-The default theme for [Ghost](http://github.com/tryghost/ghost/). This is the latest development version of Source! If you're just looking to download the latest release, head over to the [releases](https://github.com/TryGhost/Source/releases) page.
+The production Ghost theme for **[brettwfarmer.com](https://brettwfarmer.com)**.
 
-&nbsp;
+This is a **light fork of [Ghost Source](https://github.com/TryGhost/Source)**, forked at Source **v1.7.0**. The point of the fork is that its diff from upstream stays tiny, so upstream Source releases merge cheaply. Exactly three files differ from stock:
 
-# First time using a Ghost theme?
+| File | Change |
+| --- | --- |
+| `partials/components/series-nav.hbs` | **New.** Server-rendered "Explore the Series" card row, replacing a legacy Code Injection JS row. |
+| `home.hbs` | One added include: `{{> "components/series-nav"}}`, between the CTA and the post list. |
+| `package.json` | Theme identity — name, version, description. |
 
-Ghost uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
+If a change would touch a fourth file, stop and justify it. The default answer is no.
 
-This theme has lots of code comments to help explain what's going on just by reading the code. Once you feel comfortable with how everything works, we also have full [theme API documentation](https://ghost.org/docs/themes/) which explains every possible Handlebars helper and template.
+## Read this before changing anything
 
-**The main files are:**
+**[`CLAUDE.md`](CLAUDE.md)** carries the hard constraints. The ones that bite hardest:
 
-- `default.hbs` - The parent template file, which includes your global header/footer
-- `home.hbs` - The homepage
-- `index.hbs` - The main template to generate a list of posts
-- `post.hbs` - The template used to render individual posts
-- `page.hbs` - Used for individual pages
-- `tag.hbs` - Used for tag archives, eg. "all posts tagged with `news`"
-- `author.hbs` - Used for author archives, eg. "all posts written by Jamie"
+- Series pages are **routes.yaml channel routes, never Ghost collections** — collections re-home posts and break existing flat permalinks.
+- **Brand tokens and fonts live in Ghost Code Injection, not the theme**, so brand changes never require a theme release.
+- `npx gscan .` must pass clean for Ghost 6.x before any release zip is built.
 
-One neat trick is that you can also create custom one-off templates by adding the slug of a page to a template file. For example:
+## Layout
 
-- `page-about.hbs` - Custom template for an `/about/` page
-- `tag-news.hbs` - Custom template for `/tag/news/` archive
-- `author-ali.hbs` - Custom template for `/author/ali/` archive
+- `ghost-admin/` — reference copies of what is applied **by hand** in Ghost Admin: `code-injection-head.html` (Site header) and `routes.yaml` (Settings → Labs). These are not theme files and are not shipped in the release zip.
+- `.claude/skills/` — `bwf-brand-system` (brand tokens, typography, series accent mapping) and `ghost-deploy-qa` (upstream sync, build, staging, QA, cutover runbook). Read the relevant one before any visual or release work.
+- `MAINTENANCE.md` — the original fork-maintenance procedure, superseded by the deploy skill and kept for history. **Not currently present in this repo.**
 
+## Versioning
 
-# Development
+Release tags are namespaced **`bwf-v*`** (e.g. `bwf-v1.0.0`). Upstream Source's own `v*` tags are present in this repo via the `upstream` remote; using the bare `v*` namespace for fork releases collides with them.
 
-Source styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:
-
-```bash
-# install dependencies
-yarn install
-
-# run development server
-yarn dev
+```sh
+git remote add upstream https://github.com/TryGhost/Source.git   # if absent
+git fetch upstream --tags
 ```
 
-Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
+## Upstream
 
-The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which you can then upload to your site.
-
-```bash
-# create .zip file
-yarn zip
-```
-
-# PostCSS Features Used
-
-- Autoprefixer - Don't worry about writing browser prefixes of any kind, it's all done automatically with support for the latest 2 major versions of every browser.
-
-
-# SVG Icons
-
-Source uses inline SVG icons, included via Handlebars partials. You can find all icons inside `/partials/icons`. To use an icon just include the name of the relevant file, eg. To include the SVG icon in `/partials/icons/rss.hbs` - use `{{> "icons/rss"}}`.
-
-You can add your own SVG icons in the same manner.
-
-# Translations
-
-Please see [@TryGhost/Themes/theme-translations/README.md](https://github.com/TryGhost/Themes/blob/main/packages/theme-translations/README.md) for how to build, edit, or contribute translations.
-
-# Copyright & License
-
-Copyright (c) 2013-2026 Ghost Foundation - Released under the [MIT license](LICENSE).
+Built on [Ghost Source](https://github.com/TryGhost/Source), MIT licensed — see [`LICENSE`](LICENSE). Upstream documentation for the underlying theme lives in the [Ghost theme docs](https://ghost.org/docs/themes/).
