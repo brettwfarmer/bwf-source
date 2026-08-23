@@ -5,33 +5,60 @@
 # permalink (brettwfarmer.com/{slug}/) keeps working. Converting any of these to a
 # collection is a breaking change and is prohibited.
 #
-# VERIFY BEFORE APPLYING: every tag slug below must be confirmed against the live
-# site's actual tag slugs (Ghost Admin > Tags, or /ghost/api/content). Slugs here
-# are carried from the working record and are UNVERIFIED. Fix any mismatch here
-# first, then apply.
+# The `collections: /` block at the bottom is Ghost's DEFAULT root collection and
+# is what keeps article URLs flat. It is required. It is not the prohibited
+# pattern; do not remove it.
+#
+# ---------------------------------------------------------------------------
+# VERIFY BEFORE APPLYING
+# ---------------------------------------------------------------------------
+# Each entry below has TWO independent values. Do not conflate them:
+#
+#   1. ROUTE PATH  (the `/xxx/:` key) - the public URL. Brett's choice; arbitrary.
+#      It does NOT have to equal the tag slug. Changing it changes the series URL.
+#   2. TAG SLUG    (the `tag:xxx` in `filter`) - MUST match the tag's actual slug
+#      in Ghost exactly. This is the value that is UNVERIFIED.
+#
+# They are currently identical for all six entries, which is clean but incidental.
+# If a real slug differs, prefer correcting the FILTER and leaving the route path
+# alone - the path is a published URL choice, the slug is ground truth.
+#
+# WHY THIS MATTERS: a wrong tag slug does not 404. It fails silently.
+#   - Wrong slug in routes.yaml  -> the channel renders as an EMPTY post list.
+#   - Wrong slug in series-nav   -> `{{#get}}` returns nothing, the gate is false,
+#                                   and the arc card silently never renders.
+#
+# SAME VALUES LIVE IN THE THEME. `partials/components/series-nav.hbs` hardcodes
+# all six route paths (as `href`) and the two arc tag slugs (in `{{#get}}`
+# filters). Any correction here MUST be mirrored there in the same change, or the
+# card links and the routes will disagree.
+#
+# Ground truth source: Ghost Admin > Tags (or /ghost/api/content/tags/ with a key).
+# Watch for: internal tags (slug prefixed `hash-`), and slugs Ghost auto-generated
+# with a numeric suffix (`-2`) from an earlier duplicate tag name.
 
 routes:
-  /operational-learning/:                 # VERIFY slug
+  /operational-learning/:                 # route path OK | VERIFY tag slug
     controller: channel
     filter: tag:operational-learning
     template: index
-  /data-done-right/:                      # VERIFY slug
+  /data-done-right/:                      # route path OK | VERIFY tag slug
     controller: channel
     filter: tag:data-done-right
     template: index
-  /across-the-divide/:                    # VERIFY slug
+  /across-the-divide/:                    # route path OK | VERIFY tag slug
     controller: channel
     filter: tag:across-the-divide
     template: index
-  /real-talk-to-real-results/:            # VERIFY slug (series name: Real Talk to Real Results)
+  /real-talk-to-real-results/:            # route path OK | VERIFY tag slug (series: Real Talk to Real Results)
     controller: channel
     filter: tag:real-talk-to-real-results
     template: index
-  /architecture-that-persuades/:          # VERIFY slug (Arc 1)
+  /architecture-that-persuades/:          # route path OK | VERIFY tag slug (Arc 1 - also gated on >= 3 published posts)
     controller: channel
     filter: tag:architecture-that-persuades
     template: index
-  /who-pays-for-clarity/:                 # VERIFY slug (Arc 2)
+  /who-pays-for-clarity/:                 # route path OK | VERIFY tag slug (Arc 2 - also gated on >= 3 published posts)
     controller: channel
     filter: tag:who-pays-for-clarity
     template: index
