@@ -254,7 +254,8 @@ button.gh-form-input {
 }
 
 :is(.has-serif-title, .has-mono-title):not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-form-input,
-body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-heading-inter):not(.gh-font-heading-manrope):not(.gh-font-heading-noto-sans):not(.gh-font-heading-nunito):not(.gh-font-heading-poppins):not(.gh-font-heading-roboto):not(.gh-font-heading-space-grotesk) .gh-form-input {
+body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-heading-inter):not(.gh-font-heading-manrope):not(.gh-font-heading-noto-sans):not(.gh-font-heading-nunito):not(.gh-font-heading-poppins):not(.gh-font-heading-roboto):not(.gh-font-heading-space-grotesk) .gh-form-input,
+body[class^="gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-heading-inter):not(.gh-font-heading-manrope):not(.gh-font-heading-noto-sans):not(.gh-font-heading-nunito):not(.gh-font-heading-poppins):not(.gh-font-heading-roboto):not(.gh-font-heading-space-grotesk) .gh-form-input {
     padding-inline: 20px;
 }
 
@@ -291,7 +292,8 @@ button.gh-form-input {
 }
 
 :is(.has-serif-title,.has-mono-title):not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) button.gh-form-input,
-body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-heading-inter):not(.gh-font-heading-manrope):not(.gh-font-heading-noto-sans):not(.gh-font-heading-nunito):not(.gh-font-heading-poppins):not(.gh-font-heading-roboto):not(.gh-font-heading-space-grotesk) button.gh-form-input {
+body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-heading-inter):not(.gh-font-heading-manrope):not(.gh-font-heading-noto-sans):not(.gh-font-heading-nunito):not(.gh-font-heading-poppins):not(.gh-font-heading-roboto):not(.gh-font-heading-space-grotesk) button.gh-form-input,
+body[class^="gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-heading-inter):not(.gh-font-heading-manrope):not(.gh-font-heading-noto-sans):not(.gh-font-heading-nunito):not(.gh-font-heading-poppins):not(.gh-font-heading-roboto):not(.gh-font-heading-space-grotesk) button.gh-form-input {
     padding-inline-start: 50px;
 }
 
@@ -472,6 +474,21 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     margin: 0;
     white-space: nowrap;
     list-style: none;
+}
+
+.nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    vertical-align: middle;
+}
+
+.nav-icon {
+    display: block;
+    width: 1em;
+    height: 1em;
+    flex: 0 0 auto;
+    object-fit: contain;
 }
 
 .gh-navigation .gh-more-toggle {
@@ -2719,7 +2736,8 @@ figcaption a {
 }
 
 :is(.has-serif-title,.has-mono-title):not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) :is(.gh-button, .gh-form, .gh-form-input),
-body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-heading-inter):not(.gh-font-heading-manrope):not(.gh-font-heading-noto-sans):not(.gh-font-heading-nunito):not(.gh-font-heading-poppins):not(.gh-font-heading-roboto):not(.gh-font-heading-space-grotesk) :is(.gh-button, .gh-form, .gh-form-input) {
+body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-heading-inter):not(.gh-font-heading-manrope):not(.gh-font-heading-noto-sans):not(.gh-font-heading-nunito):not(.gh-font-heading-poppins):not(.gh-font-heading-roboto):not(.gh-font-heading-space-grotesk) :is(.gh-button, .gh-form, .gh-form-input),
+body[class^="gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-heading-inter):not(.gh-font-heading-manrope):not(.gh-font-heading-noto-sans):not(.gh-font-heading-nunito):not(.gh-font-heading-poppins):not(.gh-font-heading-roboto):not(.gh-font-heading-space-grotesk) :is(.gh-button, .gh-form, .gh-form-input) {
     border-radius: 0;
 }
 
