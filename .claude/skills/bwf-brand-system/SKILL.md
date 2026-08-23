@@ -46,7 +46,9 @@ Authoritative distillation of `BWF_Brand_System_v1_1.docx`. If this file and tha
 | Data Done Right | Steel `#7EB3CC` |
 | Across the Divide | Bronze `#A86A28` |
 
-Arc cards (Architecture That Persuades; Who Pays for Clarity): accent assignments are decided in the series-nav partial work; verify against the partial or ask Brett rather than inventing. The three accents never compete at equal weight in one composition.
+Arc cards (Architecture That Persuades; Who Pays for Clarity): accent assignments are decided in the series-nav partial work; verify against the partial or ask Brett rather than inventing. Both currently render steel `#7EB3CC` in `partials/components/series-nav.hbs`. The three accents never compete at equal weight in one composition.
+
+**Open gap:** *Real Talk to Real Results* is an always-on series card with no accent lead defined in this table. The partial currently assigns it steel `#7EB3CC` as the default interactive token. Deferred to the card-copy/visual drafting session — do not treat steel as ratified.
 
 ## Typography
 

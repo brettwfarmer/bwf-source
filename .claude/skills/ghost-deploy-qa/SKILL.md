@@ -15,16 +15,19 @@ git checkout -b update-source-<version>
 git merge upstream/main                 # confirm upstream default branch name first
 ```
 
-Conflicts should ONLY appear in `home.hbs` and `package.json`:
+Conflicts should ONLY appear in `home.hbs`, `package.json`, and `README.md`:
 - `home.hbs`: keep the `{{> "components/series-nav"}}` include line.
 - `package.json`: keep name `bwf-source`; bump the version.
+- `README.md`: resolve as ours. This fork replaces Source's README wholesale, so upstream README edits conflict by design and are always discarded.
 
 If any other file conflicts, the fork has drifted; stop and report before resolving.
 
-After merge, diff-check the three-file discipline:
+After merge, diff-check the three-file discipline. The rule governs theme files
+(what ships in the zip); repo metadata Ghost never sees is excluded:
 
 ```bash
-git diff upstream/main --stat           # should show only the three intended files
+git diff upstream/main --stat -- . ':!CLAUDE.md' ':!README.md' ':!.gitignore' ':!.claude' ':!ghost-admin'
+# should show only: home.hbs, package.json, partials/components/series-nav.hbs
 ```
 
 ## 2. Validate
@@ -36,11 +39,23 @@ npx gscan .                             # must pass clean, Ghost 6.x compatible
 Then the brand greps (all must return nothing):
 
 ```bash
-grep -rn "4A8A7A\|FFFFFF\|000000" --include="*.hbs" --include="*.css" . | grep -v node_modules
+# Scoped to files this fork actually touches — stock Source CSS legitimately
+# contains #fff/#000, so an unscoped grep is all false positives.
+git diff upstream/main --name-only -- '*.hbs' '*.css' | xargs -r grep -niE \
+  "4A8A7A|#FFF{1,5}\b|#0{3,6}\b|rgba?\([[:space:]]*255[[:space:]]*,[[:space:]]*255[[:space:]]*,[[:space:]]*255|rgba?\([[:space:]]*0[[:space:]]*,[[:space:]]*0[[:space:]]*,[[:space:]]*0"
+
 grep -rn "Real Talk. Real Strategy\|Down to the Hardware" . | grep -v node_modules
 ```
 
-(Stock Source CSS may legitimately contain #fff/#000 values; the grep gate applies to files this fork touches. Anything in the three-file diff or new files must be clean.)
+The hex gate must also catch `rgb()`/`rgba()` spellings. A literal
+`FFFFFF|000000` grep silently passes `rgba(255,255,255,0.15)`, which is still
+pure white and still violates the hard rule. Anything in the three-file diff or
+new files must be clean.
+
+**Known open finding:** `partials/components/series-nav.hbs` currently uses
+`rgba(255,255,255,0.15)` as the `--color-border` fallback. Deferred to the
+card-copy/visual drafting session; fix to `var(--color-border, #4A4D52)`. This
+grep will flag it until then — expected, not a regression.
 
 ## 3. Build the release zip
 

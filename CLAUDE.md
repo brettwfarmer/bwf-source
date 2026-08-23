@@ -12,6 +12,12 @@ Only three files are intended to differ from stock Source:
 
 If you find yourself changing a fourth file, stop and justify it. The default answer is no.
 
+This three-file rule governs **theme files** — everything that ships in the release zip. Repo-level metadata that Ghost never sees (`CLAUDE.md`, `README.md`, `.gitignore`, `.claude/`, `ghost-admin/`) sits outside it. Verify the theme diff with:
+
+```bash
+git diff upstream/main --stat -- . ':!CLAUDE.md' ':!README.md' ':!.gitignore' ':!.claude' ':!ghost-admin'
+```
+
 ## Hard constraints (never violate)
 
 - **Series page URLs use routes.yaml CHANNEL routes, never Ghost collections.** Collections re-home every post and break existing permalinks. Existing article URLs are flat (`brettwfarmer.com/{slug}/`) and must stay working. Never convert to collections.
@@ -34,5 +40,5 @@ If you find yourself changing a fourth file, stop and justify it. The default an
 
 - US English spelling everywhere.
 - Do not push, open PRs, or touch the live Ghost site without an explicit go-ahead from Brett. Stop at review checkpoints.
-- When syncing upstream, conflicts should only ever appear in `home.hbs` and `package.json`. Keep the series-nav include line; keep the `bwf-source` name; bump version.
+- When syncing upstream, conflicts should only ever appear in `home.hbs`, `package.json`, and `README.md`. Keep the series-nav include line; keep the `bwf-source` name; bump version; resolve `README.md` as ours (this fork's README replaces Source's, so upstream README edits conflict by design and are always discarded).
 - Anything you cannot verify from this repo, the live site, or Brett directly gets flagged as unverified, not assumed.
