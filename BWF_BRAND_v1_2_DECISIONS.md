@@ -98,38 +98,25 @@ reader is before Portal ever opens. Three defects found and fixed:
    ring now sits on the form shell, since the input is positioned to fill it.
 3. Form and CTA containers moved onto the token surfaces with explicit borders.
 
-**Open, needs a decision:** the homepage CTA is double-gated off. `cta.hbs` renders
-only when `header_style` is not Landing/Search/Off, and `screen.css` shows `.gh-cta`
-only when the header carries `is-highlight` or `is-magazine`. `header_style` defaults
-to **Landing**, so the homepage CTA never appears. Switching it to Highlight or
-Magazine also changes the homepage header layout materially, so this is a design
-call, not a toggle. The footer signup is unaffected and always renders for non-members.
+**Resolved 2026-08-30 - not a defect.** An earlier reading of this called the
+hidden homepage CTA a subscriber-growth gap and the highest-value open question in
+v1.2. That was wrong. `cta.hbs` renders only when `header_style` is not
+Landing/Search/Off, and `screen.css` shows `.gh-cta` only for `is-highlight` or
+`is-magazine` - but the Landing layout renders its own `email-subscription` form
+*and* an `<h1>` carrying `header_text` (falling back to `@site.description`) above
+the fold. Source suppresses the mid-page CTA on Landing precisely because it would
+duplicate that form. `email-subscription` appears in exactly three places: the
+Landing header, the CTA block, and the footer.
 
-### 4.4 Recruiter conversion
-Homepage above-the-fold framing and the About page. Both are Phase B copy applied in
-Ghost Admin — brand supports them, it does not author them.
+Switching to Highlight was considered and rejected on 2026-08-30. Highlight's three
+columns are all post cards, so it renders neither the tagline `<h1>` nor a header
+signup; it trades an above-the-fold form for a mid-page one and drops the identity
+statement a cold recruiter needs. That moves recruiter conversion and subscriber
+growth backwards to buy a denser front page. **`header_style` stays Landing**, and
+no `package.json` change is needed.
 
-## 5. What v1.2 does NOT change
-
-- The tagline. "Grounded certainty for digital transformation leaders." stays locked.
-- The palette bones. Dark ground, steel / amber / bronze.
-- The series accent map, including Real Talk to Real Results = amber `#D4943A`,
-  ratified 2026-08-30.
-- The theme. Brand tokens live in Code Injection precisely so brand changes never
-  require a theme release. The three-file fork and the Phase B brief remain valid.
-
-## 6. Consequences for the plan of record
-
-- A new phase sits between Phase C and cutover: v1.2 design + P0 defect clearing.
-- Cutover (Phase D) slips. The 8/29-30 window is gone.
-- Phase B copy drafting is unaffected — v1.2 does not reopen the tagline, the
-  accent map, or the card copy constraints.
-
-## 7. Open items
-
-- `BWF_Brand_System_v1_1.docx` must be updated to v1.2, or it will contradict the skill.
-- Arc card accents remain unratified (both steel, both hidden — harmless for now).
-- OG card template needs an actual design pass; nothing in v1.1 specifies one.
-- The June 1 fuller Code Injection package (soft anchors, footnote/source cards,
-  component styling) is still unmerged into `ghost-admin/` and may already contain
-  some of section 4.
+**Handed to Phase B:** `header_text` is the actual above-the-fold lever. It is a
+theme custom setting (Ghost Admin > Design > theme settings), currently unset, so
+the `<h1>` falls back to `@site.description` - the locked tagline. Whether the
+tagline is the right H1 for a cold recruiter, or whether a purpose-written line
+should sit there, is a copy decision under voice governance, not a brand one.
