@@ -149,16 +149,25 @@ zero tags**:
 | 2026-06-21 | Architecture That Persuades: The Date That Held |
 | 2026-06-28 | Architecture That Persuades: Drawn Clean |
 
-This explains the 2026-08-30 routes finding. The `architecture-that-persuades` tag
-does not exist, so the `{{#get}}` gate hides the card and the route was commented
-out — but the *content* has existed since May and the brand system locked its visual
-language on 2026-05-25. The arc is not unready. It is untagged.
+This explained the 2026-08-30 routes finding: the tag did not exist, so the
+`{{#get}}` gate hid the card and the route was commented out — but the *content* had
+existed since May and the brand system locked its visual language on 2026-05-25. The
+arc was not unready. It was untagged.
 
-Creating the tag and applying it to these five posts satisfies the >= 3 gate
-immediately, and the arc card and route can both be enabled.
+**RESOLVED 2026-08-30.** The tag `architecture-that-persuades` was created and
+applied via the Admin API to the **four prefixed posts**. Maps That Decide was
+excluded by decision — it carries no title prefix, so it is treated as a standalone
+rather than Arc 1's fifth piece. Verified through the Content API afterwards: tag
+exists, public, 4 published posts, clearing the >= 3 gate. The card renders and
+`/architecture-that-persuades/` is re-enabled in `routes.yaml`.
 
-Broader: **23 of 74 posts (31%) carry no public tag at all**, so roughly a third of
-the archive is unreachable from any series or channel navigation.
+**Note for the document:** §5.4 says the arc's visual language "inherits across all
+five Arc 1 pieces." Only four are tagged. Either the fifth is Maps That Decide and
+the count needs the prefix decision revisited, or §5.4's count is wrong.
+
+Broader: **19 of 74 posts (26%) still carry no public tag** (was 23 before this
+change), so a quarter of the archive remains unreachable from any series or channel
+navigation. That backlog is unaddressed.
 
 ---
 
@@ -178,5 +187,5 @@ the archive is unreachable from any series or channel navigation.
    injection back to the documented sizes.
 5. **The Mark.** §4.6 requires the mark deployed *with* cutover in Phase 4. The
    plan of record lists mark finalization as post-cutover backlog. These conflict.
-6. **Arc 1 tagging.** Tag the five pieces and light up the card and route, or leave
-   the arc dark deliberately.
+6. ~~Arc 1 tagging~~ **DONE 2026-08-30** — four posts tagged, card and route live.
+   Residual: §5.4 claims five Arc 1 pieces; four are tagged. See section 4.

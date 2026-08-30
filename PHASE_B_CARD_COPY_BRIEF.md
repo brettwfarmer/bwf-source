@@ -17,12 +17,11 @@ exist in Ghost.** Verified via the Content API on 2026-08-30; a fuzzy sweep of a
 Consequence: both arc cards are hidden by the `{{#get}}` >= 3-post gate in the
 partial, and both arc routes are commented out in `ghost-admin/routes.yaml`.
 
-**Update 2026-08-30:** Architecture That Persuades is *written but untagged*. Five
-published posts match it and all carry zero tags, and the brand system locked the
-arc's visual language on 2026-05-25. Tagging them satisfies the gate immediately.
-If that happens, Arc 1 copy joins the shipping scope and this becomes five card
-descriptions plus `header_text`. Who Pays for Clarity has no matching content and
-stays out. See `BWF_BRAND_RECONCILIATION.md` section 4.
+**Update 2026-08-30: Architecture That Persuades now ships.** The arc was written
+but untagged. The tag was created and applied to the four prefixed posts, clearing
+the >= 3 gate, so the card renders and the route is live. **Shipping scope is now
+five card descriptions plus `header_text`, not four.** Who Pays for Clarity has no
+matching content and remains gated off.
 
 ## 2. Constraints the copy must satisfy
 
@@ -69,6 +68,17 @@ From Capability to Possibility · The Journey to Possibility
 > Current: "Rebuilding trust in the numbers your organization runs on." (58)
 > Assessment: the series is an explicit progression - discipline > confidence >
 > capability > possibility. The line captures trust but not the movement.
+
+### Architecture That Persuades — 4 posts, May-Jun 2026, accent unratified (arc)
+The Diagram That Stayed · Maps That Decide is NOT in this series · Still Running ·
+The Date That Held · Drawn Clean
+
+> Current: "When the structure makes the case the argument can&rsquo;t." (59)
+> Assessment: written when the arc was invisible, so it was never checked against
+> the posts. The four pieces are about diagrams, roadmap dates, and retirement
+> decisions doing persuasive work inside organizations. Brand system §5.4 locked the
+> arc's visual language on 2026-05-25: "weathered structural detail separating two
+> materially distinct organizational layers."
 
 ### Real Talk to Real Results — 5 posts, Sep-Oct 2025, accent UNRATIFIED (see 4)
 Accountability Starts at the Top · Governance Without Bureaucracy · From Features
