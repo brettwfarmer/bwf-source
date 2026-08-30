@@ -12,3 +12,8 @@
 /.gitignore export-ignore
 /renovate.json export-ignore
 /gulpfile.js export-ignore
+/.env.example export-ignore
+/BWF_Website_Update_Plan.md export-ignore
+/claude-code-kickoff.md export-ignore
+/AGENTS.md export-ignore
+/CLAUDE.md export-ignore
