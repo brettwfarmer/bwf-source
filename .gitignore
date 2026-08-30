@@ -29,3 +29,8 @@ changelog.md.bk
 
 # BWF: release artifacts
 *.zip
+
+# BWF: local credentials (never commit)
+.env
+.env.local
+.env.*.local
