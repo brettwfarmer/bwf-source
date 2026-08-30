@@ -78,8 +78,32 @@ Delivered in the injection. Drives Source's own `--content-font-size` (1.7rem ->
 tracking, in-content heading steps, excerpt, and an accented blockquote. Verified by
 rendering against Source's real screen.css. No theme release required.
 
-### 4.3 Portal and CTA styling (subscriber growth)
-Style Ghost Portal to the token system. CTA copy is a Ghost setting, not theme work.
+### 4.3 Portal and CTA styling — **BUILT 2026-08-30** (subscriber growth)
+
+**Portal itself is not styleable.** It renders into an iframe injected at runtime by
+`portal.min.js`; no Code Injection CSS reaches inside. Its only lever is the accent
+color (Ghost Admin > Design), already steel `#7EB3CC` and on-brand, plus Portal copy
+in Admin. The original plan to "style Ghost Portal to the token system" was not
+achievable as written.
+
+What was styled instead - the theme's own conversion surfaces, which is where the
+reader is before Portal ever opens. Three defects found and fixed:
+
+1. **Subscribe button failed WCAG AA.** Source sets `color: var(--color-white)` over
+   the accent background: pure white on steel measures **2.28:1**, against the 4.5:1
+   floor the brand system sets. Now `--color-bg` on steel, **8.64:1**. The fix had to
+   invert rather than substitute - the brand's own light text token is worse at 1.83:1.
+2. **No keyboard focus indicator.** Source sets `outline: none` on `.gh-form-input`
+   and never replaces it anywhere in the stylesheet (WCAG 2.4.7). A `:focus-within`
+   ring now sits on the form shell, since the input is positioned to fill it.
+3. Form and CTA containers moved onto the token surfaces with explicit borders.
+
+**Open, needs a decision:** the homepage CTA is double-gated off. `cta.hbs` renders
+only when `header_style` is not Landing/Search/Off, and `screen.css` shows `.gh-cta`
+only when the header carries `is-highlight` or `is-magazine`. `header_style` defaults
+to **Landing**, so the homepage CTA never appears. Switching it to Highlight or
+Magazine also changes the homepage header layout materially, so this is a design
+call, not a toggle. The footer signup is unaffected and always renders for non-members.
 
 ### 4.4 Recruiter conversion
 Homepage above-the-fold framing and the About page. Both are Phase B copy applied in

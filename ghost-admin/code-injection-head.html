@@ -4,7 +4,8 @@
 
   SCOPE: brand fonts, token system, and the v1.2 typographic scale.
     - P0 section makes the v1.1 design actually render (tokens + fonts).
-    - P1 section adds the reading scale v1.1 never specified.
+    - P1 sections add the reading scale v1.1 never specified, and bring the
+      conversion surfaces onto the token system.
   The OG card template is NOT here; it lives in ghost-admin/og-template/ and
   produces images uploaded per post as feature images.
 
@@ -137,5 +138,64 @@ a { color: var(--color-accent-primary); }
   :root { --content-font-size: 1.8rem; }
   .gh-content h2 { font-size: 2.6rem; }
   .gh-content h3 { font-size: 2.2rem; }
+}
+
+/* ----------------------------------------------------------------------
+   v1.2 CONVERSION SURFACES (P1)
+
+   PORTAL SCOPE, read this before trying to style it: Ghost Portal renders
+   into an iframe that portal.min.js injects at runtime. Nothing in this
+   block reaches inside it, and no amount of CSS here will. Portal's only
+   real lever is the accent color (Ghost Admin > Design), already steel
+   #7EB3CC and on-brand. Portal copy is set in Admin > Portal settings.
+   Everything below styles the THEME's own conversion surfaces, which is
+   where the reader actually is before Portal ever opens.
+   ---------------------------------------------------------------------- */
+
+/* Subscribe button. Source sets `color: var(--color-white)` over the accent
+   background. Pure white on steel measures 2.28:1 - under the 4.5:1 WCAG AA
+   floor the brand system sets as its accessibility minimum, and a pure-white
+   violation besides. Dark-on-steel measures 8.64:1.
+   Worth noting the fix has to INVERT rather than substitute: the brand's own
+   light text token #E8E6E0 is worse still at 1.83:1. */
+.gh-button {
+  color: var(--color-bg);
+  font-family: var(--gh-font-body);
+  letter-spacing: 0;
+}
+.gh-button:hover { background-color: var(--color-steel-light); }
+
+/* Form shell. Source's default is a flat translucent white wash; give it a
+   real surface and an explicit border so the field reads as an affordance. */
+.gh-form {
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+}
+.gh-form-input { color: var(--color-text-primary); }
+.gh-form-input::placeholder { color: var(--color-text-muted); opacity: 1; }
+
+/* Focus. Source sets `outline: none` on .gh-form-input and never replaces it
+   anywhere in the stylesheet, so a keyboard user gets no visible focus on the
+   primary conversion element (WCAG 2.4.7). The ring goes on the shell because
+   the input is absolutely positioned to fill it. */
+.gh-form:focus-within {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+/* CTA and footer signup blocks. */
+.gh-cta-inner {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+.gh-cta-title,
+.gh-footer-signup-header {
+  font-family: var(--gh-font-heading);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+}
+.gh-cta-description,
+.gh-footer-signup-subhead {
+  color: var(--color-text-secondary);
 }
 </style>
