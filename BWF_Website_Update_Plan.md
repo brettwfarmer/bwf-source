@@ -1,5 +1,5 @@
 # BWF Website Update Plan — Source Cutover + Content Legibility
-**Date:** 2026-08-23 | **Status:** Locked (Q1 C / Q2 B / Q3 B, session of 2026-08-23)
+**Date:** 2026-08-23 | **Status:** Locked, amended 2026-08-30 (phase C2 added; cutover re-sequenced)
 
 ## Decisions carried in (locked, prior sessions)
 - Light fork build path: server-rendered series-nav in forked `home.hbs` + one partial; tokens/fonts in Code Injection; series URLs via channel routes, never collections. (2026-06-01)
@@ -26,6 +26,14 @@ Drafted under voice skill + write-like-a-human + em-dash discipline, with the ca
 **C. Claude Code Session 2 — apply copy, final release (short)**
 Final card copy into the partial; version bump; gscan + greps; release zip.
 
+**C2. Brand v1.2 — design + defect clearing (added 2026-08-30)**
+Decided in `BWF_BRAND_v1_2_DECISIONS.md` after an audit found Brand System v1.1 was
+never fully shipped: tokens absent, Newsreader never loading, the server-rendered
+series-nav not deployed, and three hard rules violated live (retired teal, retired
+tagline in the footer, pure white). Scope: clear the six P0 defects, then design the
+OG card template and the typographic scale. Runs in parallel with B. Decided to ship
+in full **before** cutover, so D now waits on this.
+
 **D. Staging + cutover (Brett in Ghost Admin, runbook-guided)**
 Upload-without-activate; preview QA per the checklist; apply routes.yaml and Code Injection; activate in a quiet window; re-run QA live; retire Solo-era injection blocks (the legacy JS series-nav above all — this also kills the retired-tagline footer leak if it lives in injection; if the tagline lives in site settings instead, fix it there at the same time). About page applies independently via Ghost Admin, any time after B.
 
@@ -33,7 +41,7 @@ Upload-without-activate; preview QA per the checklist; apply routes.yaml and Cod
 Brand mark finalization; feature-image replacement on old posts; GitHub deploy workflow after 30 days of stability; vault inferred-entry spot checks.
 
 ## Open items and risks
-- **The Standing Charge page live status** — still unconfirmed; gates both the Tuesday 8/25 first-comment link and one QA row. Brett confirms directly (web fetch to the domain is blocked from the content project's environment).
+- ~~The Standing Charge page live status~~ **RESOLVED 2026-08-30: live.** `/the-standing-charge/` returns HTTP 200 with correct OG title and description. No longer gates the first-comment link or the QA row.
 - **June 1 output files** (full Code Injection package with the deeper rule groups; original routes.yaml; Phase 2 README): if Brett still has them, they merge into `ghost-admin/`; the regenerated head block covers fonts + tokens only and says so in its provenance note.
 - **Upstream drift** (unverified): Source has likely moved past 1.7.0 and Ghost past 6.42 since June. Session 1 measures it; a restructured upstream homepage is the one thing that could re-open build decisions.
 - **Content pass scope creep:** the About rewrite is the piece most likely to grow. If it wants to become a positioning essay, it gets cut back; it is a conversion surface, not an article.
