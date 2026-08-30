@@ -65,14 +65,18 @@ Item 3 carries the most weight. Judge v1.1 only after seeing it actually render.
 
 ## 4. P1 — what v1.2 adds
 
-### 4.1 OG card template — highest-leverage new work (LinkedIn CTR)
-1200x627, series accent stripe, title set in Newsreader. Today the feature images are
-AI-generated with no shared signature, so nothing in-feed identifies the publication
-across posts. A consistent card is what makes a series recognizable while scrolling.
+### 4.1 OG card template — **BUILT 2026-08-30** (LinkedIn CTR)
+Delivered in `ghost-admin/og-template/`: a parameterized HTML card plus a Chrome
+render script, producing 1200x627 PNGs uploaded as post feature images. Series
+accent stripe, title in Newsreader, auto step-down to fit three lines. Fonts are
+vendored locally because fetching them at render time is a race that silently
+yields the fallback serif.
 
-### 4.2 Typographic scale (depth, and everything else)
-v1.1 names two fonts and stops. It defines no scale, no measure, no leading. That is
-the reading-comfort gap. Pure Code Injection, so it ships without a theme release.
+### 4.2 Typographic scale — **BUILT 2026-08-30** (depth)
+Delivered in the injection. Drives Source's own `--content-font-size` (1.7rem ->
+1.9rem) and `--content-width` (720px -> 680px, about 72 characters), plus leading,
+tracking, in-content heading steps, excerpt, and an accented blockquote. Verified by
+rendering against Source's real screen.css. No theme release required.
 
 ### 4.3 Portal and CTA styling (subscriber growth)
 Style Ghost Portal to the token system. CTA copy is a Ghost setting, not theme work.

@@ -1,10 +1,12 @@
 <!--
   BWF Code Injection - HEAD (Ghost Admin > Settings > Code injection > Site header)
-  Version: v1.2-P0 (2026-08-30). Reference copy of record; applied by hand.
+  Version: v1.2 (2026-08-30). Reference copy of record; applied by hand.
 
-  SCOPE: brand fonts + token system. P0 defect pass only - this block makes the
-  v1.1 design actually render. It deliberately does NOT carry the P1 typographic
-  scale or OG work; those are still to be designed.
+  SCOPE: brand fonts, token system, and the v1.2 typographic scale.
+    - P0 section makes the v1.1 design actually render (tokens + fonts).
+    - P1 section adds the reading scale v1.1 never specified.
+  The OG card template is NOT here; it lives in ghost-admin/og-template/ and
+  produces images uploaded per post as feature images.
 
   REPLACES the Solo-era injection entirely. That block must be deleted, not
   appended to. It contains three things that must not survive:
@@ -73,4 +75,67 @@ body {
 }
 
 a { color: var(--color-accent-primary); }
+
+/* ----------------------------------------------------------------------
+   v1.2 TYPOGRAPHIC SCALE (P1)
+
+   v1.1 named two fonts and stopped. It defined no size, measure or leading,
+   which is the actual reading-comfort gap. Everything below drives Source's
+   own custom properties, so none of it requires a theme release.
+
+   Source runs html { font-size: 62.5% }, so 1rem = 10px throughout.
+   The two hooks that matter are --content-font-size (default 1.7rem) and
+   --content-width (default 720px); both are read by Source's own CSS.
+   ---------------------------------------------------------------------- */
+:root {
+  /* 19px body. Source itself steps up to 1.9rem for serif titles, so this is
+     its own sanctioned reading size rather than an invention. DM Sans has a
+     small x-height; 17px on a dark ground reads thin. */
+  --content-font-size: 1.9rem;
+
+  /* Measure. 720px at 19px DM Sans runs about 77 characters, past the
+     comfortable ceiling. 680px lands near 72. */
+  --content-width: 680px;
+}
+
+/* Body copy. Light text on a dark ground blooms optically, so it wants more
+   leading than the same setting would on white, and no negative tracking. */
+.gh-content {
+  line-height: 1.65;
+  letter-spacing: 0;
+}
+.gh-content > p { margin-block-end: 1.5em; }
+
+/* Headings set in Newsreader. Tighter leading and slight negative tracking:
+   a serif at display size needs both, and Source's default assumes a sans. */
+.gh-article-title,
+.gh-content h1, .gh-content h2, .gh-content h3,
+.gh-content h4, .gh-content h5, .gh-content h6 {
+  font-family: var(--gh-font-heading);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+}
+.gh-article-title { line-height: 1.1; letter-spacing: -0.02em; }
+
+/* In-content heading steps, roughly a 1.25 ratio off the 19px base. */
+.gh-content h2 { font-size: 3.0rem; margin-block-start: 1.6em; }
+.gh-content h3 { font-size: 2.4rem; margin-block-start: 1.4em; }
+.gh-content h4 { font-size: 2.0rem; margin-block-start: 1.2em; }
+
+/* Excerpt and lede sit between heading and body. */
+.gh-article-excerpt { font-size: 2.1rem; line-height: 1.5; color: var(--color-text-secondary); }
+
+/* Blockquotes carry the steel accent rather than a grey bar. */
+.gh-content blockquote:not([class]) {
+  border-left: 3px solid var(--color-accent-primary);
+  padding-left: 1.2em;
+  font-style: normal;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 767px) {
+  :root { --content-font-size: 1.8rem; }
+  .gh-content h2 { font-size: 2.6rem; }
+  .gh-content h3 { font-size: 2.2rem; }
+}
 </style>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BWF OG Card</title>
+<style>
+  /* Fonts are vendored in fonts/ and loaded from disk on purpose. Pulling them
+     from Google at render time is a race: Chrome's --screenshot fires on load,
+     and a slow font fetch silently produces a card set in the fallback serif.
+     That is the exact failure mode that kept Newsreader off the live site. */
+  @font-face {
+    font-family: 'Newsreader'; font-style: normal; font-weight: 600;
+    src: url('fonts/newsreader-600.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'DM Sans'; font-style: normal; font-weight: 500;
+    src: url('fonts/dmsans-500.woff2') format('woff2');
+  }
+  :root {
+    --color-bg: #040A1C;
+    --color-surface: #0D1220;
+    --color-text-primary: #E8E6E0;
+    --color-text-secondary: #B0ADA6;
+    --color-text-muted: #8A8880;
+    --color-border: #4A4D52;
+    --color-structure: #2A2E36;
+    --accent: #7EB3CC; /* overridden per series by JS */
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 627px; }
+  body {
+    background: var(--color-bg);
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    color: var(--color-text-primary);
+    overflow: hidden;
+  }
+  .card {
+    position: relative;
+    width: 1200px; height: 627px;
+    padding: 76px 88px 64px 88px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  /* Accent stripe — the single strongest series signal in a LinkedIn feed */
+  .stripe {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 14px;
+    background: var(--accent);
+  }
+  /* Subtle structural wash so the card is not a flat rectangle */
+  .wash {
+    position: absolute; inset: 0;
+    background: radial-gradient(120% 90% at 88% 8%, var(--color-surface) 0%, transparent 62%);
+    pointer-events: none;
+  }
+  .top { position: relative; }
+  .series {
+    font-size: 21px; font-weight: 500; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .rule { margin-top: 22px; width: 92px; height: 2px; background: var(--color-structure); }
+  .title {
+    position: relative;
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 600;
+    font-size: 82px;
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    color: var(--color-text-primary);
+    max-width: 17ch;
+    /* clamp to 3 lines; render script steps size down if it overflows */
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+  .bottom {
+    position: relative;
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-top: 1px solid var(--color-border); padding-top: 26px;
+  }
+  .site { font-size: 25px; font-weight: 500; color: var(--color-text-secondary); }
+  .tagline { font-size: 21px; color: var(--color-text-muted); }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="wash"></div>
+    <div class="stripe"></div>
+    <div class="top">
+      <div class="series" id="series">Operational Learning</div>
+      <div class="rule"></div>
+    </div>
+    <h1 class="title" id="title">Placeholder title</h1>
+    <div class="bottom">
+      <span class="site">brettwfarmer.com</span>
+      <span class="tagline">Grounded certainty for digital transformation leaders.</span>
+    </div>
+  </div>
+<script>
+  // Series -> ratified accent (Brand System v1.1 + the 2026-08-30 amber ratification)
+  var ACCENTS = {
+    "Operational Learning":      "#D4943A",
+    "Data Done Right":           "#7EB3CC",
+    "Across the Divide":         "#A86A28",
+    "Real Talk to Real Results": "#D4943A"
+  };
+  var q = new URLSearchParams(location.search);
+  var series = q.get("series") || "Operational Learning";
+  var title  = q.get("title")  || "Placeholder title";
+  document.getElementById("series").textContent = series;
+  document.getElementById("title").textContent  = title;
+  document.documentElement.style.setProperty("--accent", ACCENTS[series] || "#7EB3CC");
+
+  // Step the title down until it fits three lines. Long headlines are the
+  // normal case here, not the exception, so this must not clip silently.
+  var el = document.getElementById("title");
+  var size = 82;
+  while (el.scrollHeight > el.clientHeight + 1 && size > 46) {
+    size -= 2;
+    el.style.fontSize = size + "px";
+  }
+  document.title = "ready";
+</script>
+</body>
+</html>
