@@ -46,14 +46,20 @@ therefore to *finish and evolve* v1.1 as v1.2, not to replace it.
 
 Do these regardless of v1.2 scope. No design work involved.
 
-| # | Item | Owner | Notes |
+| # | Item | When | Notes |
 | --- | --- | --- | --- |
-| 1 | Remove retired teal `#4A8A7A` (3 rules) | Ghost Admin | Across the Divide takes bronze `#A86A28` |
-| 2 | Remove retired tagline from footer | Ghost Admin | Lives in site settings or injection; find and kill |
-| 3 | **Make Newsreader actually load** | Injection | The serif/sans pairing IS the identity and it is absent |
-| 4 | Homepage OG image 1024x1024 -> 1200x627 | Ghost Admin | Square card against `summary_large_image` costs LinkedIn CTR |
-| 5 | Enable `show_related_articles` | Ghost Admin | Theme defaults it true; it is off. Free depth lever |
-| 6 | Set `signup_heading` / `signup_subheading` | Ghost Admin | Currently unset; falls back to site title/description |
+| 1 | Remove the retired teal (3 rules) | Interim, optional | Lives in the Solo-era injection. Dies at cutover when that block is deleted |
+| 2 | Remove retired tagline from footer | Interim, optional | Server-rendered by Solo in `gh-copyright`. bwf-source's footer has no tagline, so cutover resolves it |
+| 3 | **Make Newsreader actually load** | Interim or cutover | New injection below does it. The serif/sans pairing IS the identity and it is absent |
+| 4 | Homepage OG 1024x1024 -> 1200x627 | **Now** | Site-level, theme-independent, permanent. The only item that is unambiguously do-it-today |
+| 5 | Enable `show_related_articles` | **Cutover** | A bwf-source custom setting. Cannot be set until the theme is activated |
+| 6 | Set `signup_heading` / `signup_subheading` | **Cutover** | Also bwf-source custom settings. Same constraint |
+
+**Sequencing correction (2026-08-30):** items 5 and 6 were initially listed as
+immediate Ghost Admin tasks. They are custom settings defined in this theme's
+`package.json`, not Ghost core, so they do not exist in Admin until bwf-source is
+uploaded and activated. Items 1-3 are interim hygiene on a theme being retired;
+they resolve automatically at cutover. Only item 4 is both immediate and permanent.
 
 Item 3 carries the most weight. Judge v1.1 only after seeing it actually render.
 

@@ -1,14 +1,30 @@
 <!--
   BWF Code Injection - HEAD (Ghost Admin > Settings > Code injection > Site header)
-  Scope: brand fonts + v1.1 token system for the bwf-source (Source fork) theme.
-  Applied by hand in Ghost Admin. This file is the reference copy of record.
+  Version: v1.2-P0 (2026-08-30). Reference copy of record; applied by hand.
 
-  PROVENANCE NOTE: This is a clean regeneration from the locked Brand System v1.1
-  token table (2026-08-23). A fuller injection package was produced 2026-06-01
-  (including additional rule groups: soft anchors, footnote/source cards, and
-  component-level styling from the Phase 0 gap list). If that output file still
-  exists, merge it here and remove this note. Until then, this block covers
-  fonts + tokens + base overrides only.
+  SCOPE: brand fonts + token system. P0 defect pass only - this block makes the
+  v1.1 design actually render. It deliberately does NOT carry the P1 typographic
+  scale or OG work; those are still to be designed.
+
+  REPLACES the Solo-era injection entirely. That block must be deleted, not
+  appended to. It contains three things that must not survive:
+    1. The legacy JS series-nav (`sn.className = "bwf-series-nav"`). The theme now
+       renders this server-side. Leaving both produces TWO "Explore the Series"
+       rows on the homepage.
+    2. The retired teal on the Across the Divide cards (border, hover, title).
+       Across the Divide's ratified accent is bronze, below.
+    3. Pure-white values, which the brand system prohibits.
+
+  ORDERING NOTE: Ghost emits code injection inside {{ghost_head}}, which is the
+  last tag in <head>, so these :root declarations land after Ghost's own font
+  variables. The doubled `:root:root` selector on the font block is a deliberate
+  specificity guard - Newsreader silently failed to load once already, and the
+  font hooks are the one thing here that Ghost also writes.
+
+  PROVENANCE: regenerated from Brand System v1.1 token table. A fuller injection
+  package was produced 2026-06-01 (soft anchors, footnote/source cards,
+  component-level styling). If that file is recovered, merge it here and drop
+  this note.
 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,18 +33,18 @@
 
 <style>
 :root {
-  /* BWF Brand System v1.1 - nine-token core */
+  /* Brand System v1.1 - nine-token core */
   --color-bg: #040A1C;
   --color-surface: #0D1220;
   --color-text-primary: #E8E6E0;
   --color-text-secondary: #B0ADA6;
   --color-text-muted: #8A8880;
-  --color-accent-primary: #7EB3CC;   /* steel */
-  --color-accent-secondary: #D4943A; /* amber */
-  --color-accent-tertiary: #A86A28;  /* bronze */
+  --color-accent-primary: #7EB3CC;   /* steel  - links, interactive, Data Done Right */
+  --color-accent-secondary: #D4943A; /* amber  - Operational Learning, Real Talk to Real Results */
+  --color-accent-tertiary: #A86A28;  /* bronze - Across the Divide */
   --color-border: #4A4D52;
 
-  /* Extended palette - supporting values only */
+  /* Extended palette - supporting values only, never primary accents */
   --color-steel-deep: #5A8FA8;
   --color-steel-light: #A3CFDE;
   --color-steel-highlight: #D1E8F0;
@@ -38,13 +54,17 @@
   --color-surface-elevated: #141A2E;
   --color-structure: #2A2E36;
 
-  /* Source theme font hooks */
-  --gh-font-heading: 'Newsreader', Georgia, serif;
-  --gh-font-body: 'DM Sans', -apple-system, sans-serif;
-
   /* Map brand tokens onto Source's own custom properties */
   --background-color: var(--color-bg);
   --color-darker-gray: var(--color-text-primary);
+}
+
+/* Font hooks. Doubled selector is a specificity guard against Ghost's own
+   --gh-font-* declaration, which is generated from the theme's title_font /
+   body_font settings and cannot offer Newsreader. */
+:root:root {
+  --gh-font-heading: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --gh-font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 body {
