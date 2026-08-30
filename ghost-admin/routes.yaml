@@ -38,30 +38,38 @@
 # with a numeric suffix (`-2`) from an earlier duplicate tag name.
 
 routes:
-  /operational-learning/:                 # route path OK | VERIFY tag slug
+  /operational-learning/:                 # VERIFIED 2026-08-30 via Content API (10 posts)
     controller: channel
     filter: tag:operational-learning
     template: index
-  /data-done-right/:                      # route path OK | VERIFY tag slug
+  /data-done-right/:                      # VERIFIED 2026-08-30 via Content API (7 posts)
     controller: channel
     filter: tag:data-done-right
     template: index
-  /across-the-divide/:                    # route path OK | VERIFY tag slug
+  /across-the-divide/:                    # VERIFIED 2026-08-30 via Content API (10 posts)
     controller: channel
     filter: tag:across-the-divide
     template: index
-  /real-talk-to-real-results/:            # route path OK | VERIFY tag slug (series: Real Talk to Real Results)
+  /real-talk-to-real-results/:            # VERIFIED 2026-08-30 via Content API (5 posts)
     controller: channel
     filter: tag:real-talk-to-real-results
     template: index
-  /architecture-that-persuades/:          # route path OK | VERIFY tag slug (Arc 1 - also gated on >= 3 published posts)
-    controller: channel
-    filter: tag:architecture-that-persuades
-    template: index
-  /who-pays-for-clarity/:                 # route path OK | VERIFY tag slug (Arc 2 - also gated on >= 3 published posts)
-    controller: channel
-    filter: tag:who-pays-for-clarity
-    template: index
+  # DISABLED 2026-08-30: tag `architecture-that-persuades` does not exist in Ghost.
+  # An active route here would publish a live URL rendering an EMPTY post list.
+  # To enable: create the tag, tag >= 3 published posts into it (the series-nav
+  # card is gated on the same threshold), then uncomment the four lines below.
+  # /architecture-that-persuades/:          # Arc 1 - enable once tag exists (see note above)
+  #   controller: channel
+  #   filter: tag:architecture-that-persuades
+  #   template: index
+  # DISABLED 2026-08-30: tag `who-pays-for-clarity` does not exist in Ghost.
+  # An active route here would publish a live URL rendering an EMPTY post list.
+  # To enable: create the tag, tag >= 3 published posts into it (the series-nav
+  # card is gated on the same threshold), then uncomment the four lines below.
+  # /who-pays-for-clarity/:                 # Arc 2 - enable once tag exists (see note above)
+  #   controller: channel
+  #   filter: tag:who-pays-for-clarity
+  #   template: index
 
 collections:
   /:
