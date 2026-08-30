@@ -15,9 +15,14 @@ exist in Ghost.** Verified via the Content API on 2026-08-30; a fuzzy sweep of a
 14 tags found no renamed equivalent.
 
 Consequence: both arc cards are hidden by the `{{#get}}` >= 3-post gate in the
-partial, and both arc routes are commented out in `ghost-admin/routes.yaml`. Arc
-copy may be drafted, but it cannot ship until each tag exists and holds at least
-three published posts. **Only the four always-on cards are on the cutover path.**
+partial, and both arc routes are commented out in `ghost-admin/routes.yaml`.
+
+**Update 2026-08-30:** Architecture That Persuades is *written but untagged*. Five
+published posts match it and all carry zero tags, and the brand system locked the
+arc's visual language on 2026-05-25. Tagging them satisfies the gate immediately.
+If that happens, Arc 1 copy joins the shipping scope and this becomes five card
+descriptions plus `header_text`. Who Pays for Clarity has no matching content and
+stays out. See `BWF_BRAND_RECONCILIATION.md` section 4.
 
 ## 2. Constraints the copy must satisfy
 

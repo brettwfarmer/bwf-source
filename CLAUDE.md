@@ -31,7 +31,8 @@ git diff upstream/main --stat -- . ':!CLAUDE.md' ':!README.md' ':!.gitignore' ':
 
 ## Where the knowledge lives
 
-- `.claude/skills/bwf-brand-system/` — the full brand token system, typography, series accent mapping, and visual rules. Read it before touching anything visual.
+- `.claude/skills/bwf-brand-system/` — the full brand token system, typography, series accent mapping, and visual rules. Read it before touching anything visual. The authority it distills is **v1.1.1 (July 2026)**, which is Markdown despite its `.docx` name; the valid `.docx` on the Desktop is the older v1.1.
+- `BWF_BRAND_RECONCILIATION.md` — where this repo and the authority document disagree, and the six open decisions that follow. Read it before citing the brand system as settled.
 - `.claude/skills/ghost-deploy-qa/` — the upstream-sync, build, staging, QA, and cutover runbook. Read it before any release work.
 - `MAINTENANCE.md` — the original fork-maintenance procedure (superset absorbed into the deploy skill; kept for history).
 - `ghost-admin/` — reference copies of Code Injection and routes.yaml as applied (or to be applied) in Ghost Admin.

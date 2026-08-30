@@ -3,9 +3,19 @@ name: bwf-brand-system
 description: The Brett W. Farmer brand system (v1.1) for brettwfarmer.com — color tokens, typography, series accent mapping, retired elements, and visual rules. Use this skill for ANY work that touches visual presentation on the site or theme: CSS, Code Injection, the series-nav partial, card styling, fonts, OG/social meta, images, favicons, or accessibility checks. Also use it when validating that a change contains no retired brand elements. If a hex value, font name, or accent choice is about to be written, consult this skill first rather than guessing.
 ---
 
-# BWF Brand System v1.1 (locked)
+# BWF Brand System v1.1.1 (locked)
 
-Authoritative distillation of `BWF_Brand_System_v1_1.docx`. If this file and that document ever disagree, the document wins and this skill needs updating.
+Authoritative distillation of the brand system document. If this file and that
+document ever disagree, the document wins and this skill needs updating.
+
+**Which document.** The authority is **v1.1.1 (July 2026)**. As of 2026-08-30 it
+lives at `~/Desktop/Consulting/Folders/BWF_Brand_System_v1_1.docx` — a file that is
+Markdown text despite the `.docx` extension. The valid Word file at
+`~/Desktop/Consulting/BWF_Brand_System_v1_1.docx` is the older **v1.1 (April
+2026)** and is NOT current. v1.1.1 adds a concrete-subject composition exception to
+§4.3 and a sixth Series Visual Language entry for Architecture That Persuades.
+See `BWF_BRAND_RECONCILIATION.md` in the repo root for the full gap analysis and
+the open decisions.
 
 ## Identity
 
@@ -45,11 +55,26 @@ Authoritative distillation of `BWF_Brand_System_v1_1.docx`. If this file and tha
 | Operational Learning | Amber `#D4943A` |
 | Data Done Right | Steel `#7EB3CC` |
 | Across the Divide | Bronze `#A86A28` |
-| Real Talk to Real Results | Amber `#D4943A` |
+| Real Talk to Real Results | **Balanced steel + amber** per the document; card ships amber `#D4943A` (unratified — see below) |
 
 Arc cards (Architecture That Persuades; Who Pays for Clarity): accent assignments are decided in the series-nav partial work; verify against the partial or ask Brett rather than inventing. Both currently render steel `#7EB3CC` in `partials/components/series-nav.hbs`. The three accents never compete at equal weight in one composition.
 
-**Resolved 2026-08-30 (Phase B):** *Real Talk to Real Results* is ratified as amber `#D4943A`, replacing the unratified steel default. Four always-on cards over three accents means one accent necessarily repeats; amber places the repeat at card positions 1 and 4 rather than adjacent, and leaves steel to serve as the interactive/link token without leading two cards.
+**CORRECTED 2026-08-30.** An earlier note in this skill called *Real Talk to Real
+Results* an open gap with "no accent lead defined." That was a distillation error,
+not a gap in the document: §2.2 has always carried the row **"Balanced steel +
+amber — equal weight, the broadest series, using the full warm/cool tension without
+favoring either."** The row was lost because this skill's table holds one hex per
+series and cannot represent "balanced."
+
+The series-nav card currently ships amber `#D4943A`, ratified on 2026-08-30 on the
+false premise that the accent was undefined. A single `--bwf-accent` cannot express
+"balanced," and §2.2 predates the card surface existing, so amber is a defensible
+implementation — but it is **not ratified** until the document says so. Do not cite
+it as settled. Open decision 1 in `BWF_BRAND_RECONCILIATION.md`.
+
+**Accessibility note:** bronze `#A86A28` measures 4.47:1 against `--color-bg`,
+just under the 4.5:1 floor §4.5 states for accents. It passes WCAG as large text
+(the card name is 19px/700), but it misses the document's own stricter rule.
 
 ## Typography
 
