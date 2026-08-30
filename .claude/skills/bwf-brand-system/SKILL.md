@@ -45,10 +45,11 @@ Authoritative distillation of `BWF_Brand_System_v1_1.docx`. If this file and tha
 | Operational Learning | Amber `#D4943A` |
 | Data Done Right | Steel `#7EB3CC` |
 | Across the Divide | Bronze `#A86A28` |
+| Real Talk to Real Results | Amber `#D4943A` |
 
 Arc cards (Architecture That Persuades; Who Pays for Clarity): accent assignments are decided in the series-nav partial work; verify against the partial or ask Brett rather than inventing. Both currently render steel `#7EB3CC` in `partials/components/series-nav.hbs`. The three accents never compete at equal weight in one composition.
 
-**Open gap:** *Real Talk to Real Results* is an always-on series card with no accent lead defined in this table. The partial currently assigns it steel `#7EB3CC` as the default interactive token. Deferred to the card-copy/visual drafting session — do not treat steel as ratified.
+**Resolved 2026-08-30 (Phase B):** *Real Talk to Real Results* is ratified as amber `#D4943A`, replacing the unratified steel default. Four always-on cards over three accents means one accent necessarily repeats; amber places the repeat at card positions 1 and 4 rather than adjacent, and leaves steel to serve as the interactive/link token without leading two cards.
 
 ## Typography
 

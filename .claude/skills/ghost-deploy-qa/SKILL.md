@@ -52,10 +52,10 @@ The hex gate must also catch `rgb()`/`rgba()` spellings. A literal
 pure white and still violates the hard rule. Anything in the three-file diff or
 new files must be clean.
 
-**Known open finding:** `partials/components/series-nav.hbs` currently uses
-`rgba(255,255,255,0.15)` as the `--color-border` fallback. Deferred to the
-card-copy/visual drafting session; fix to `var(--color-border, #4A4D52)`. This
-grep will flag it until then — expected, not a regression.
+**Resolved 2026-08-30 (Phase B):** the former `rgba(255,255,255,0.15)`
+`--color-border` fallback in `partials/components/series-nav.hbs` is now
+`var(--color-border, #4A4D52)`. Both brand greps return clean; there is no longer
+an expected hit. Any hit is a regression.
 
 ## 3. Build the release zip
 

@@ -75,16 +75,15 @@ to Outcomes · Execution that Sticks · How Transformation Becomes a Habit
 
 ## 4. Open decisions that belong to this phase
 
-1. **Real Talk to Real Results has no ratified accent lead.** The brand system
-   records this as an open gap; the partial defaults it to steel and says steel is
-   explicitly not ratified. Note that four cards across three accents means one
-   accent necessarily doubles - the question is which, and where the repeat falls
-   in card order (currently amber, steel, bronze, ?).
+1. ~~Real Talk to Real Results accent~~ **RESOLVED 2026-08-30: amber `#D4943A`.**
+   Four cards over three accents means one accent necessarily repeats; amber puts
+   the repeat at positions 1 and 4 rather than adjacent, and leaves steel as the
+   interactive/link token. Applied in the partial; brand skill table updated.
 2. **Arc card accents are unratified** (both steel, both currently hidden).
-3. **Known open finding:** `partials/components/series-nav.hbs:71` uses
-   `rgba(255,255,255,0.15)` as the `--color-border` fallback, violating the
-   never-pure-white rule. Runbook fix: `var(--color-border, #4A4D52)`. Deferred to
-   this phase by the deploy runbook.
+3. ~~rgba(255,255,255,0.15) border fallback~~ **RESOLVED 2026-08-30.** Changed to
+   `var(--color-border, #4A4D52)` per the runbook. The brand hex/rgb grep now
+   returns clean, so the runbook's "known open finding" note is stale and should be
+   dropped at the next edit of the deploy skill.
 
 ## 5. Also in Phase B, but not in this repo
 
