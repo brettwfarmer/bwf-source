@@ -124,7 +124,21 @@ document has two incompatible rules and the template picked one without knowing.
 
 **Needs a decision — see Section 5, item 2.**
 
-### 3.3 v1.2 was anticipated and has arrived
+### 3.3 Section 4.4 is specified but unimplemented
+
+The document specifies six long-form structural devices in detail - soft anchors,
+pull quotes, principle callouts, comparison tables, code blocks, footnotes and a
+Sources section - and §6 Phase 2 lists them as required Code Injection work. **None
+are implemented.** The shipped injection covers tokens, fonts, the type scale and
+conversion surfaces only.
+
+The 2026-06-01 injection package that reportedly carried them was searched for on
+2026-08-30 across Downloads, Desktop and Documents and does not exist on this
+machine. It is lost, not misplaced. Everything in §4.4 is specified precisely enough
+to rebuild from the document, so nothing is blocked - but it is unbuilt work, and it
+is the largest remaining gap between the document and the site.
+
+### 3.4 v1.2 was anticipated and has arrived
 
 §2.1: *"Note on warning and success colors: not yet tokenized. They will be added
 in v1.2 if member portals or interactive forms enter scope."*
