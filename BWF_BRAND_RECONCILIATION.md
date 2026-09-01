@@ -179,9 +179,10 @@ exists, public, 4 published posts, clearing the >= 3 gate. The card renders and
 five Arc 1 pieces." Only four are tagged. Either the fifth is Maps That Decide and
 the count needs the prefix decision revisited, or §5.4's count is wrong.
 
-Broader: **19 of 74 posts (26%) still carry no public tag** (was 23 before this
-change), so a quarter of the archive remains unreachable from any series or channel
-navigation. That backlog is unaddressed.
+Broader: **9 of 74 posts (12%) still carry no public tag**, down from 23. Ten more
+were tagged on 2026-08-31 per `TAGGING_PROPOSAL.md`, which also created the Who Pays
+for Clarity arc. The nine that remain are Tier 4 there: three pre-series foundational
+posts and six that resist single-series mapping.
 
 ---
 

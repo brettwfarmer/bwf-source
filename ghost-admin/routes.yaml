@@ -58,14 +58,10 @@ routes:
     controller: channel
     filter: tag:architecture-that-persuades
     template: index
-  # DISABLED 2026-08-30: tag `who-pays-for-clarity` does not exist in Ghost.
-  # An active route here would publish a live URL rendering an EMPTY post list.
-  # To enable: create the tag, tag >= 3 published posts into it (the series-nav
-  # card is gated on the same threshold), then uncomment the four lines below.
-  # /who-pays-for-clarity/:                 # Arc 2 - enable once tag exists (see note above)
-  #   controller: channel
-  #   filter: tag:who-pays-for-clarity
-  #   template: index
+  /who-pays-for-clarity/:                 # VERIFIED 2026-08-31 via Content API (3 posts)
+    controller: channel
+    filter: tag:who-pays-for-clarity
+    template: index
 
 collections:
   /:

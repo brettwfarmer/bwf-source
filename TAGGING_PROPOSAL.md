@@ -1,13 +1,13 @@
 # Untagged Post Backlog — Proposed Series Mapping
 
-**Date:** 2026-08-30 | **Status:** Proposal, awaiting approval. Nothing written.
+**Date:** 2026-08-30 | **Status:** Tiers 1-3 APPLIED 2026-08-31. Tier 4 still open.
 **Scope:** the 19 posts carrying no public tag, of 74 published.
 
 Apply with `ghost-admin/tools/tag_posts.py` (dry-run by default).
 
 ---
 
-## Tier 1 — Conclusive (6 posts). Recommend applying as-is.
+## Tier 1 — Conclusive (6 posts). **APPLIED 2026-08-31.**
 
 Evidence is the post's own title, or an exact gap in an unbroken weekly cadence.
 
@@ -35,7 +35,7 @@ Explicit title prefix, and they fill the only two gaps in the series' weekly run
 Tagged OL posts land on Mar 1, 8, 15, 22, 29, Apr 5, 12, 19, May 3, 17 — missing
 exactly Apr 26 and May 10, which is where these two sit. Conclusive.
 
-## Tier 2 — Strong (1 post). Recommend applying.
+## Tier 2 — Strong (1 post). **APPLIED 2026-08-31.**
 
 ### -> `decision-system` (existing tag, 9 posts)
 
@@ -49,7 +49,7 @@ calls: the operating system behind real outcomes" — matches the series' subjec
 Short of conclusive only because it lacks the "Decision X:" title prefix every
 other member carries.
 
-## Tier 3 — Hypothesis (3 posts). **This is my reading, not the author's.**
+## Tier 3 — Hypothesis (3 posts). **APPLIED 2026-08-31.** This was my reading, not the author's — see the caveat below; it stands as a thing to sanity-check against the posts.
 
 ### -> `who-pays-for-clarity` — WOULD CREATE THE TAG AND LIGHT UP ARC 2
 
@@ -77,7 +77,7 @@ Borderline, not included: **A Wrong Name Beats an Empty Box** (2026-08-03) sits 
 the same weekly run and concerns naming and ownership, but its cost is implicit
 rather than the explicit bill/charge/pays metaphor the other three share.
 
-## Tier 4 — Needs your call (9 posts). No proposal.
+## Tier 4 — Needs your call (9 posts). **STILL OPEN — no proposal made or applied.**
 
 These have no defensible mapping from the outside.
 
@@ -114,3 +114,26 @@ series card.
 - Arc 2 renders; both arc routes go live; Phase B grows to six card descriptions.
 - Every slug must match `routes.yaml` and `series-nav.hbs` exactly. A mismatch does
   not 404 — it renders an empty channel and silently hides the gated card.
+
+
+---
+
+## Applied 2026-08-31
+
+Tiers 1-3, ten posts, via `ghost-admin/tools/tag_posts.py` after a dry run.
+Verified through the Content API afterwards.
+
+| Tag | Was | Now |
+| --- | --- | --- |
+| operational-learning | 10 | 12 |
+| decision-system | 9 | 10 |
+| real-talk-roundup | 6 | 10 |
+| **who-pays-for-clarity** | did not exist | **3 (new)** |
+
+Untagged fell from 19 to **9** (26% -> 12%). All six series routes are now active
+and every route's tag was re-verified live against the theme's hrefs and gates.
+
+**Watch item.** Who Pays for Clarity sits at exactly 3 posts against a gate of 3.
+There is no margin: unpublishing or retagging any one of those posts drops the count
+to 2 and the arc card silently stops rendering, while `/who-pays-for-clarity/`
+keeps resolving to a thin channel. The same is not true of Arc 1, which has 4.

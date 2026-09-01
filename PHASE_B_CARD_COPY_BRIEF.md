@@ -10,18 +10,15 @@ discipline), per the division of labor locked in `BWF_Website_Update_Plan.md`.
 
 ## 1. Scope — four descriptions ship, not six
 
-The two arc tags (`architecture-that-persuades`, `who-pays-for-clarity`) **do not
-exist in Ghost.** Verified via the Content API on 2026-08-30; a fuzzy sweep of all
-14 tags found no renamed equivalent.
+**Both arc tags now exist and both arcs ship.** Architecture That Persuades was
+tagged on 2026-08-30 (4 posts) and Who Pays for Clarity on 2026-08-31 (3 posts);
+both clear the >= 3 gate, both cards render, and both routes are active. **Scope is
+six card descriptions plus `header_text`.**
 
-Consequence: both arc cards are hidden by the `{{#get}}` >= 3-post gate in the
-partial, and both arc routes are commented out in `ghost-admin/routes.yaml`.
-
-**Update 2026-08-30: Architecture That Persuades now ships.** The arc was written
-but untagged. The tag was created and applied to the four prefixed posts, clearing
-the >= 3 gate, so the card renders and the route is live. **Shipping scope is now
-five card descriptions plus `header_text`, not four.** Who Pays for Clarity has no
-matching content and remains gated off.
+Note on Who Pays for Clarity: its three posts were grouped by inference from theme,
+not from anything the author declared — no post names the arc. The card copy should
+be checked against the three posts rather than assumed. See `TAGGING_PROPOSAL.md`
+Tier 3.
 
 ## 2. Constraints the copy must satisfy
 
@@ -79,6 +76,16 @@ The Date That Held · Drawn Clean
 > decisions doing persuasive work inside organizations. Brand system §5.4 locked the
 > arc's visual language on 2026-05-25: "weathered structural detail separating two
 > materially distinct organizational layers."
+
+### Who Pays for Clarity — 3 posts, Jul-Aug 2026, accent unratified (arc)
+The Double Bill · The Unmeasured Advantage · The Standing Charge
+
+> Current: "The real cost of clarity, and who ends up carrying it." (54)
+> Assessment: written before the arc had any tagged content, and in fact this line
+> is what the three posts were grouped by. All three run an explicit cost metaphor:
+> a bill paid twice, a team that pays for every team that isn't measurable, a
+> standing charge for telling the truth. The line holds up unusually well — but
+> confirm the grouping is right before trusting that.
 
 ### Real Talk to Real Results — 5 posts, Sep-Oct 2025, accent UNRATIFIED (see 4)
 Accountability Starts at the Top · Governance Without Bureaucracy · From Features
