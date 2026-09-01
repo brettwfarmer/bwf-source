@@ -124,7 +124,7 @@ document has two incompatible rules and the template picked one without knowing.
 
 **Needs a decision — see Section 5, item 2.**
 
-### 3.3 Section 4.4 is specified but unimplemented
+### 3.3 Section 4.4 — implemented 2026-08-31, with three residuals
 
 The document specifies six long-form structural devices in detail - soft anchors,
 pull quotes, principle callouts, comparison tables, code blocks, footnotes and a
@@ -134,9 +134,44 @@ conversion surfaces only.
 
 The 2026-06-01 injection package that reportedly carried them was searched for on
 2026-08-30 across Downloads, Desktop and Documents and does not exist on this
-machine. It is lost, not misplaced. Everything in §4.4 is specified precisely enough
-to rebuild from the document, so nothing is blocked - but it is unbuilt work, and it
-is the largest remaining gap between the document and the site.
+machine. It is lost, not misplaced.
+
+**Rebuilt from the document on 2026-08-31.** The markup was inventoried across all
+74 published posts first, because three of the seven devices have never been used
+and styling them blind would have been guesswork:
+
+| Device | Actual usage in the archive | Status |
+| --- | --- | --- |
+| Pull quotes | 76 blockquotes across **38 posts** | Implemented |
+| Sources section | **20 posts** | Implemented |
+| Principle callouts | **1 post** (`kg-callout-card`) | Implemented, needs a convention ratified |
+| Comparison tables | **0** | Implemented defensively |
+| Code blocks | **0** | Implemented defensively |
+| Footnotes | **0** | Implemented defensively |
+| Soft anchors | no markup exists | **NOT implemented** |
+
+Verified by rendering against Source's real stylesheet using markup copied from live
+posts. The pull-quote rule also corrects deviation 2.4 above: the type-scale pass had
+styled blockquotes with a 3px border, secondary text and upright roman, against the
+document's 4px, text-primary and italic.
+
+**Residual 1 - soft anchors have no markup.** §4.4 specifies DM Sans Medium 18-20px
+in accent-secondary, replacing formal H2/H3 in chapter-flow articles. Ghost has no
+such element, and `h4` cannot be repurposed: the archive already uses it for short
+list labels ("See it.", "Own it.", "Trust"). This needs an authoring convention
+chosen before it can be built, so it was left out rather than guessed at.
+
+**Residual 2 - the principle callout convention is unratified.** Ghost has no
+principle card. The implementation maps the *accent* variant of Ghost's callout card
+onto §4.4's principle callout, and generates the literal word PRINCIPLE with CSS.
+That means every accent callout becomes a principle callout. It is a convention the
+document does not describe and should either endorse or replace.
+
+**Residual 3 - the document does not mention `<hr>` at all.** It is the most-used
+structural element in the archive by a wide margin: **257 occurrences across 68 of
+74 posts (92%)**, functioning as the scene separator. §4.4 defines seven devices and
+omits the one that actually carries the writing. It is now styled on the border
+token; the document should say so.
 
 ### 3.4 v1.2 was anticipated and has arrived
 
@@ -204,3 +239,9 @@ posts and six that resist single-series mapping.
    plan of record lists mark finalization as post-cutover backlog. These conflict.
 6. ~~Arc 1 tagging~~ **DONE 2026-08-30** — four posts tagged, card and route live.
    Residual: §5.4 claims five Arc 1 pieces; four are tagged. See section 4.
+7. **Soft anchor authoring convention.** §4.4 specifies them; no markup exists and
+   `h4` is already spoken for. Unbuildable until a convention is chosen.
+8. **Principle callout convention.** Accent callout card == principle callout, with
+   the label generated in CSS. Endorse or replace.
+9. **`<hr>` belongs in §4.4.** 92% of posts use it as the scene separator and the
+   document is silent on it.

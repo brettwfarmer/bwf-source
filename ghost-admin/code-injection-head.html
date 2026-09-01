@@ -133,14 +133,6 @@ a { color: var(--color-accent-primary); }
 /* Excerpt and lede sit between heading and body. */
 .gh-article-excerpt { font-size: 2.1rem; line-height: 1.5; color: var(--color-text-secondary); }
 
-/* Blockquotes carry the steel accent rather than a grey bar. */
-.gh-content blockquote:not([class]) {
-  border-left: 3px solid var(--color-accent-primary);
-  padding-left: 1.2em;
-  font-style: normal;
-  color: var(--color-text-secondary);
-}
-
 @media (max-width: 767px) {
   :root { --content-font-size: 1.8rem; }
   .gh-content h2 { font-size: 2.6rem; }
@@ -205,4 +197,186 @@ a { color: var(--color-accent-primary); }
 .gh-footer-signup-subhead {
   color: var(--color-text-secondary);
 }
+
+/* ----------------------------------------------------------------------
+   v1.2 LONG-FORM STRUCTURAL DEVICES (brand system section 4.4)
+
+   Section 4.4 specifies seven devices. Their markup was inventoried across
+   all 74 published posts on 2026-08-31 before any selector here was written,
+   because three of the seven have never once been used and styling them
+   blind would have been guesswork:
+
+     pull quotes        76 blockquotes across 38 posts   HEAVILY USED
+     Sources section    20 posts                          USED
+     principle callouts  1 post (kg-callout-card)         BARELY USED
+     comparison tables   0                                NEVER USED
+     code blocks         0                                NEVER USED
+     footnotes           0                                NEVER USED
+     soft anchors        no markup exists                 NOT IMPLEMENTED
+
+   The unused four are still styled, cheaply and to spec, so the first one
+   authored renders correctly rather than raw. Soft anchors are absent
+   because they need an authoring convention decided first - see the note at
+   the end of this block.
+
+   Root is 62.5%, so 1rem = 10px and the document's px sizes map directly.
+   ---------------------------------------------------------------------- */
+
+/* Pull quotes. 4.4: Newsreader Regular 24px, italic, text-primary, 4px left
+   border in accent-primary, indented 24px. This supersedes the blockquote
+   rule from the type-scale pass, which used a 3px border, secondary text and
+   upright roman - four deviations from the document, all now corrected. */
+.gh-content blockquote {
+  font-family: var(--gh-font-heading);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 2.4rem;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+  border-left: 4px solid var(--color-accent-primary);
+  padding-left: 24px;
+  margin-left: 24px;
+}
+
+/* Scene separators. NOT in section 4.4 - but <hr> is the most-used structural
+   element in the archive by a wide margin (257 occurrences across 68 of 74
+   posts, 92%), and the document does not mention it at all. Left unstyled it
+   renders as the browser default rule. Flagged for the document. */
+.gh-content hr {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin-block: 2.4em;
+}
+
+/* Sources section. 4.4: heading SOURCES in DM Sans Medium 12px all-caps,
+   text-muted, 1px top border; list in DM Sans Regular 14px, text-secondary,
+   hanging indent. Ghost auto-generates heading IDs, so this needs no special
+   authoring - a heading with the text "Sources" already carries id="sources".
+   Each source is its own <p>, and Sources is always the last section, so the
+   general sibling combinator is safe here. */
+.gh-content [id="sources"] {
+  font-family: var(--gh-font-body);
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.6em;
+  margin-block-start: 2.4em;
+}
+/* Authors usually place an <hr> immediately before the heading; without this
+   the rule and the border stack into a visible double line. */
+.gh-content hr + [id="sources"] { border-top: 0; padding-top: 0; margin-block-start: 0; }
+.gh-content [id="sources"] ~ p {
+  font-family: var(--gh-font-body);
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  padding-left: 2.4em;
+  text-indent: -2.4em;      /* hanging indent */
+  margin-block-end: 0.8em;
+}
+
+/* Principle callouts. 4.4 asks for a bordered box carrying the literal word
+   PRINCIPLE above the text. Ghost has no principle card, so this maps onto
+   the accent variant of its callout card: an accent callout IS a principle
+   callout. That is an authoring convention, not something Ghost enforces -
+   see the note at the end of this block. */
+.gh-content .kg-callout-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  padding: 24px;
+}
+.gh-content .kg-callout-text {
+  font-family: var(--gh-font-body);
+  font-weight: 500;
+  font-size: 1.7rem;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+.gh-content .kg-callout-card-accent::before {
+  content: "PRINCIPLE";
+  display: block;
+  font-family: var(--gh-font-body);
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+}
+
+/* Comparison tables. 4.4: surface header row with secondary text, body rows
+   alternating bg and surface, 1px borders throughout, 15px DM Sans. */
+.gh-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--gh-font-body);
+  font-size: 1.5rem;
+}
+.gh-content table th,
+.gh-content table td { border: 1px solid var(--color-border); padding: 12px 14px; text-align: left; }
+.gh-content table th {
+  font-weight: 500;
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+}
+.gh-content table tbody tr:nth-child(odd)  { background-color: var(--color-bg); }
+.gh-content table tbody tr:nth-child(even) { background-color: var(--color-surface); }
+
+/* Code blocks. 4.4: surface background, system mono stack, 14px,
+   text-primary, 16px padding, no border. */
+.gh-content pre {
+  background-color: var(--color-surface);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.4rem;
+  line-height: 1.55;
+  color: var(--color-text-primary);
+  padding: 16px;
+  border: 0;
+  border-radius: 0;
+  overflow-x: auto;
+}
+.gh-content :not(pre) > code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  background-color: var(--color-surface);
+  padding: 0.15em 0.4em;
+}
+
+/* Footnotes. 4.4: 13px DM Sans, text-muted, with the marker as a superscript
+   link in accent-primary. Ghost's markdown card emits sup#fnref:n and a
+   div.footnotes, so both shapes are covered. */
+.gh-content sup a,
+.gh-content a[id^="fnref"] { color: var(--color-accent-primary); text-decoration: none; }
+.gh-content .footnotes {
+  font-family: var(--gh-font-body);
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.2em;
+  margin-block-start: 2.4em;
+}
+
+/* In use but unspecified by 4.4: toggle cards (14 posts) and bookmark cards
+   (12). Minimal token alignment only, so they stop rendering on Source's
+   light-theme defaults. */
+.gh-content .kg-toggle-card,
+.gh-content .kg-bookmark-container {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  color: var(--color-text-primary);
+}
+.gh-content .kg-bookmark-description,
+.gh-content .kg-bookmark-metadata { color: var(--color-text-secondary); }
+
+/* NOT IMPLEMENTED - soft anchors. 4.4 specifies DM Sans Medium 18-20px in
+   accent-secondary, replacing formal H2/H3 in chapter-flow articles. There is
+   no markup for them: Ghost has no such element, and h4 cannot be repurposed
+   because the archive already uses it for short list labels ("See it.",
+   "Own it.", "Trust"). Implementing them requires choosing an authoring
+   convention first. Left out deliberately rather than guessed at. */
 </style>
